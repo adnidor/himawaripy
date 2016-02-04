@@ -50,7 +50,7 @@ def main():
     makedirs(split(output_file)[0], exist_ok=True)
     png.save(output_file, "PNG")
     
-    call(["feh", "--bg-fill", output_file])
+    call(["feh", "--bg-fill", "--no-fehbg", output_file])
 
     print("Done!\n")
 
