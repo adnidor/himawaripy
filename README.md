@@ -11,13 +11,10 @@ near-realtime picture of Earth.
 
 ## Supported Desktop Environments
 ### Tested
-* Unity 7
+* i3 using feh
 
-### Not Tested
-* GNOME 3
-* MATE
-* LXDE
-* KDE
+### Not tested
+* other DE using feh
 
 ### Not Supported
 * any other desktop environments that are not mentioned above.
@@ -47,22 +44,6 @@ You can also change the path of the latest picture, which is by default
     # Add the line:
     # */10 * * * * /home/USERNAME/himawaripy/himawaripy.py
     
-### For KDE Users
-> So the issue here is that KDE does not support changing the desktop wallpaper
-> from the commandline, but it does support polling a directory for file changes
-> through the "Slideshow" desktop background option, whereby you can point KDE
-> to a folder and have it load a new picture at a certain interval.
->
-> The idea here is to:
->
-> * Set the cron for some interval (say 9 minutes)
-> * Open Desktop Settings -> Wallpaper -> Wallpaper Type -> Slideshow
-> * Add the `~/.himawari` dir to the slideshow list
-> * Set the interval check to 10 minutes (one minute after the cron, also
->   depending on your download speed)
-
-Many thanks to [xenithorb](https://github.com/xenithorb) [for the solution](https://github.com/xenithorb/himawaripy/commit/01d7c681ae7ce47f639672733d0f734574662833)!
-
 ## Example
 ![Earth, as 2016/02/04/13:30:00 GMT](http://i.imgur.com/4XA6WaM.jpg)
     
