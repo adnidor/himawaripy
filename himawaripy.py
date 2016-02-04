@@ -10,8 +10,6 @@ from urllib.request import urlopen
 
 from PIL import Image
 
-from utils import get_desktop_environment
-
 # Configuration
 # =============
 
@@ -51,22 +49,8 @@ def main():
 
     makedirs(split(output_file)[0], exist_ok=True)
     png.save(output_file, "PNG")
-
-    de = get_desktop_environment()
-    if de in ["gnome", "unity", "cinnamon"]:
-        # Because of a bug and stupid design of gsettings, see http://askubuntu.com/a/418521/388226
-        if de == "unity":
-            call(["gsettings", "set", "org.gnome.desktop.background", "draw-background", "false"])
-        call(["gsettings", "set", "org.gnome.desktop.background", "picture-uri", "file://" + output_file])
-        call(["gsettings", "set", "org.gnome.desktop.background", "picture-options", "scaled"])
-    elif de == "mate":
-        call(["gconftool-2", "-type", "string", "-set", "/desktop/gnome/background/picture_filename", '"{}"'.format(output_file)])
-    elif de == "xfce4":
-        call(["xfconf-query", "--channel", "xfce4-desktop", "--property", "/backdrop/screen0/monitor0/image-path", "--set", output_file])
-    elif de == "lxde":
-        call(["display", "-window", "root", output_file])
-    else:
-        exit("Your desktop environment '{}' is not supported.".format(de))
+    
+    call(["feh", "--bg-fill", output_file])
 
     print("Done!\n")
 
